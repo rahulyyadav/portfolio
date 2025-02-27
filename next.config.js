@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // your existing config here
+  images: {
+    domains: ["raba.pages.dev", "github.com"],
+  },
 };
 
 module.exports = nextConfig;
