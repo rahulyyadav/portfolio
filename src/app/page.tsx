@@ -122,23 +122,22 @@ export default function Home() {
 
               <div className="ml-[30%] md:ml-[30%] ml-4 bg-white/5 rounded-lg p-6 transition-all duration-300 hover:bg-white/10 hover:scale-105 w-[500px] md:w-[500px] w-full flex items-center justify-center border border-white/20 backdrop-blur-sm shadow-lg">
                 <div className="space-y-6 text-center">
-                  <h3 className="text-2xl font-light">Post</h3>
+                  <h3 className="text-2xl font-light">Papers</h3>
                   <p className="text-gray-300 font-light leading-relaxed text-base">
-                    Post is a real-time chat application built using WebSockets,
-                    AWS Lambda, API Gateway, and DynamoDB. It enables users to
-                    send and receive messages instantly with a scalable and
-                    serverless architecture. The app securely stores user data
-                    in AWS, ensuring reliability and performance.
+                    Papers is a website in productin right now, for complete AI
+                    integrated past questions collection of all the
+                    universities. So many featues are comming soon, which makes
+                    whole communities for all. Thank you.
                   </p>
                   <div className="flex gap-3 justify-center flex-wrap">
                     <span className="text-sm px-3 py-1 rounded-full bg-white/10">
-                      AWS
+                      Next.js
                     </span>
                     <span className="text-sm px-3 py-1 rounded-full bg-white/10">
-                      Serverless
+                      web app
                     </span>
                     <span className="text-sm px-3 py-1 rounded-full bg-white/10">
-                      TypeScript
+                      AI tools
                     </span>
                   </div>
                 </div>
@@ -152,25 +151,24 @@ export default function Home() {
 
               <div className="ml-[30%] md:ml-[30%] ml-4 bg-white/5 rounded-lg p-6 transition-all duration-300 hover:bg-white/10 hover:scale-105 w-[500px] md:w-[500px] w-full flex items-center justify-center border border-white/20 backdrop-blur-sm shadow-lg">
                 <div className="space-y-6 text-center">
-                  <h3 className="text-2xl font-light">University Work</h3>
+                  <h3 className="text-2xl font-light">
+                    Coding in Summer Vacation
+                  </h3>
                   <p className="text-gray-300 font-light leading-relaxed text-base">
-                    This semester, I am focusing on mastering Cloud Computing
-                    and Full-Stack Development while managing a heavy 33-credit
-                    course load at VIT Vellore. I am building real-time
-                    applications using AWS, refining my backend development
-                    skills, and deploying scalable solutions. Additionally, I am
-                    preparing for internships to gain industry experience and
-                    strengthen my expertise in distributed systems.
+                    Summer vacation is going on, and I am solving coding
+                    problems of leetcode, gfg, etc. Learning new things and
+                    building new projects, working on skills, Took one course
+                    for 'Artificial Intelligence with Google'.
                   </p>
                   <div className="flex gap-3 justify-center flex-wrap">
                     <span className="text-sm px-3 py-1 rounded-full bg-white/10">
-                      University
+                      AI
                     </span>
                     <span className="text-sm px-3 py-1 rounded-full bg-white/10">
-                      VIT
+                      Code
                     </span>
                     <span className="text-sm px-3 py-1 rounded-full bg-white/10">
-                      Internship
+                      Summer Vacation
                     </span>
                   </div>
                 </div>
