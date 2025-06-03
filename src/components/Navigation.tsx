@@ -12,7 +12,7 @@ const navItems = [
   { name: "Info", path: "/", icon: UserCircleIcon },
   { name: "Resume", path: "/resume", icon: DocumentTextIcon },
   { name: "University", path: "/university", icon: AcademicCapIcon },
-  { name: "Ideas", path: "/ideas", icon: LightBulbIcon },
+  { name: "Projects", path: "/Projects", icon: LightBulbIcon },
   { name: "Personal Life", path: "/personal", icon: HeartIcon },
   { name: "Address", path: "/address", icon: MapPinIcon },
 ];

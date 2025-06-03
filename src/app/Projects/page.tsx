@@ -5,65 +5,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-const UniversityPage = () => {
-  const [activeYear, setActiveYear] = useState<string>("third-year");
+interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  icon: string;
+  link?: string;
+  tags: string[];
+  image?: string;
+}
+
+interface ContentSection {
+  title: string;
+  items: ProjectItem[];
+}
+
+interface ContentData {
+  projects: ContentSection;
+  ideas: ContentSection;
+}
+
+const ProjectsPage = () => {
+  const [activeTab, setActiveTab] = useState<keyof ContentData>("projects");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Add a useEffect to handle year changes
-  useEffect(() => {
-    // Reset any animation states or force re-render when year changes
-    if (mounted) {
-      const timer = setTimeout(() => {
-        // This is just to force a re-render with a small delay
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [activeYear, mounted]);
-
-  const yearsData = [
-    {
-      id: "third-year",
+  const contentData: ContentData = {
+    projects: {
       title: "Projects",
-      achievements: [
+      items: [
         {
-          id: "break",
-          title: "5th Semester Break",
+          id: "uni-papers",
+          title: "Uni-Papers.com",
           description:
-            "Took a break during 5th semester due to continuous health reasons.",
-          date: "September 2024 - December 2024",
-          icon: "health",
-          tags: ["Health Break", "Personal Development"],
-        },
-        {
-          id: "ai-ml-foundations",
-          title: "AI/ML Foundations",
-          description:
-            "Learned fundamentals of Artificial Intelligence and Machine Learning principles and applications.",
-          date: "December 2024",
-          icon: "ai",
-          tags: ["AI", "Machine Learning", "Data Science"],
-        },
-        {
-          id: "aws-cloud",
-          title: "AWS Cloud Computing",
-          description:
-            "Developed skills in AWS cloud services and infrastructure, deciding to focus on cloud computing for future career.",
-          date: "January 2025",
-          icon: "cloud",
-          tags: ["Cloud Computing", "AWS", "Technical Skill"],
-        },
-        {
-          id: "crypto-tracker",
-          title: "Cryptocurrency Price Tracker",
-          description:
-            "Built a Next.js application with API integration to track cryptocurrency prices in real time.",
-          date: "December 2025",
-          icon: "chart",
-          tags: ["Next.js", "API Integration", "Real-time Data"],
+            "Built and launched uni-papers.com, a collaborative academic platform for sharing university papers, notes, and solutions. Implemented a revenue-sharing model where contributors earn from Google Ads, and university onboarding earns lifetime commissions. Integrated AI-powered question support directly into resource pages, eliminating the need for external search.",
+          date: "2025",
+          icon: "project",
+          link: "https://uni-papers.com/",
+          tags: ["Next.js", "Supabase", "Vercel", "Gemini AI Integration"],
+          image: "/Uni-Papers.jpeg",
         },
         {
           id: "url-shortener",
@@ -74,171 +58,34 @@ const UniversityPage = () => {
           icon: "link",
           link: "https://raba.pages.dev/",
           tags: ["AWS", "Next.js", "Full Stack"],
-          image: "/university/3rd-year/ra URL Shortener.jpeg",
-        },
-        {
-          id: "secure-chat",
-          title: "Post - Secure Messaging Platform",
-          description:
-            "Working on a real-time chat application using SHA-256 for user information encryption and AES for message encryption, focused on privacy without data collection for ads.",
-          date: "February 2025",
-          icon: "security",
-          link: "https://github.com/rahulyyadav/Post",
-          tags: ["Encryption", "Security", "Web Application"],
-        },
-        {
-          id: "hospital-system",
-          title: "Hospital Management System",
-          description:
-            "Working on a project for hospital management system integrating doctors, patients and hospital staff in a single platform.",
-          date: "From February 2025",
-          icon: "project",
-          tags: ["Healthcare", "Full Stack", "In Progress"],
+          image: "/raba.png",
         },
         {
           id: "patient-hardware",
-          title: "Patient Health Data Hardware",
+          title: "Real Time Patient Health Data Hardware Device",
           description:
-            "Working on a hardware project to get patient health data and upload it to AWS cloud to get patient statistics.",
-          date: "From February 2025",
+            "Developed a portable hardware device to collect real-time patient health data and auto-sync with hospital management system webapp.",
+          date: "2025",
           icon: "hardware",
           tags: ["Hardware", "IoT", "Healthcare", "AWS"],
+          image: "/PatientHealthDataMachine.jpg",
         },
       ],
     },
-    {
-      id: "second-year",
-      title: "Second Year (2023-2024)",
-      achievements: [
+    ideas: {
+      title: "Ideas",
+      items: [
         {
-          id: "web-programming",
-          title: "Web Programming Excellence",
+          id: "campus-run",
+          title: "Campus Run",
           description:
-            'Achieved "S" grade in web programming courses, demonstrating mastery of key web technologies.',
-          date: "February 2024",
-          icon: "web",
-          tags: ["Web Development", "S Grade", "Academic Excellence"],
-        },
-        {
-          id: "environmental-project",
-          title: "Environmental Pollution Awareness Project",
-          description:
-            "Designed and developed an educational website showcasing different types of pollution affecting our planet.",
-          date: "March 2024",
-          icon: "environment",
-          link: "https://rahulyyadav.github.io/-Environmental-Pollution/",
-          tags: ["Environmental Science", "Web Design", "Education"],
-          image: "/university/2nd-year/Environmental-pollution.png",
-        },
-        {
-          id: "dsa-practice",
-          title: "Data Structures & Algorithms Practice",
-          description:
-            "Engaged in comprehensive DSA practice and problem-solving to strengthen core programming skills.",
-          date: "Anytime 😉",
-          icon: "algorithm",
-          tags: ["DSA", "Algorithms", "Problem Solving"],
-        },
-        {
-          id: "internship",
-          title: "Internship Exploration",
-          description:
-            "Secured an internship opportunity but couldn't complete due to health reasons.",
-          date: "June 2024",
-          icon: "work",
-          tags: ["Professional Experience", "Career Development"],
-        },
-        {
-          id: "hospital-app",
-          title: "Hospital Management Application",
-          description:
-            "Created an Expo app for a new hospital in Nepal, focusing on patient management and scheduling.",
-          date: "July 2024",
-          icon: "health",
-          link: "https://raba.pages.dev/Zm0QVq",
-          tags: ["Mobile Development", "Healthcare", "Expo"],
-          image: "/university/2nd-year/aarogya.PNG",
+            "A location-based parcel exchange app where users can request parcels from specific places, match with nearby contributors, and negotiate delivery fees—similar to inDrive, with built-in commission-based monetization. This will be best for universities and a campuses where people want cheap and fast alternative and works with any parcel rather than a specific niche.",
+          date: "2025",
+          icon: "idea",
+          tags: ["Mobile App", "Location Services", "P2P Exchange"],
         },
       ],
     },
-    {
-      id: "first-year",
-      title: "First Year (2022-2023)",
-      achievements: [
-        {
-          id: "python-dev",
-          title: "Python Development",
-          description:
-            'Achieved "S" grade with 100/100 in the Python programming course.',
-          date: "September 2022",
-          icon: "code",
-          tags: ["Python", "Programming", "S Grade"],
-        },
-        {
-          id: "todo-project",
-          title: "TO-DO List Project",
-          description:
-            "Built a functional task management application with HTML, CSS, and JavaScript.",
-          date: "December 2022",
-          icon: "web",
-          link: "https://rahulyyadav.github.io/TO-DO/",
-          tags: ["Web Development", "JavaScript", "Frontend"],
-          image: "/university/1st-year/Todo List.jpeg",
-        },
-        {
-          id: "simon-game",
-          title: "Simon Game",
-          description:
-            "Interactive memory game built with web technologies to test and improve memory skills.",
-          date: "January 2023",
-          icon: "gamepad",
-          link: "https://rahulyyadav.github.io/simon/",
-          tags: ["Game Development", "JavaScript", "Frontend"],
-          image: "/university/1st-year/Simon Game.jpeg",
-        },
-        {
-          id: "cs50p",
-          title: "CS50P Course Completion",
-          description:
-            "Completed Harvard's CS50 Introduction to Programming with Python free course.",
-          date: "September 2022",
-          icon: "certificate",
-          tags: ["Online Learning", "Python", "Computer Science"],
-        },
-        {
-          id: "cpp",
-          title: "C/C++ Programming",
-          description:
-            'Learned C/C++ programming and achieved "S" grade in the course.',
-          date: "March 2023",
-          icon: "code",
-          tags: ["C++", "Programming", "Core CS"],
-        },
-      ],
-    },
-  ];
-
-  const skillsData = {
-    technical: [
-      { name: "HTML/CSS/JavaScript", proficiency: 90 },
-      { name: "React/Next.js", proficiency: 85 },
-      { name: "AWS Cloud Services", proficiency: 80 },
-      { name: "Python", proficiency: 85 },
-      { name: "C/C++", proficiency: 75 },
-    ],
-    research: [
-      { name: "Data Analysis", proficiency: 75 },
-      { name: "Problem Solving", proficiency: 90 },
-      { name: "Technical Writing", proficiency: 80 },
-      { name: "Research Methodology", proficiency: 70 },
-    ],
-    soft: [
-      { name: "Team Leadership", proficiency: 85 },
-      { name: "Problem Solving", proficiency: 90 },
-      { name: "Project Management", proficiency: 80 },
-      { name: "Communication", proficiency: 85 },
-      { name: "Time Management", proficiency: 80 },
-    ],
   };
 
   // Icon components
@@ -508,7 +355,7 @@ const UniversityPage = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2M7 7h10"
             />
           </svg>
         );
@@ -547,81 +394,49 @@ const UniversityPage = () => {
     }
   };
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
-
-  const fadeInVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.8, ease: "easeInOut" },
-    },
-  };
-
-  // Year selector animation when changing years
-  const yearTransition = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-    transition: { duration: 0.5 },
-  };
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Side Navigation - Floating - Moved to right side */}
       <div className="fixed top-1/2 right-6 transform -translate-y-1/2 z-50">
         <div className="flex flex-col items-center gap-6 rounded-full py-5 px-3 bg-white/10 backdrop-blur-sm">
-          {yearsData.map((year, index) => (
-            <button
-              key={year.id}
-              onClick={() => setActiveYear(year.id)}
-              className={`w-8 h-8 rounded-full transition-all flex items-center justify-center ${
-                activeYear === year.id
-                  ? "bg-amber-400 shadow-glow"
-                  : "bg-white/20 hover:bg-white/30"
+          <button
+            onClick={() => setActiveTab("projects")}
+            className={`w-8 h-8 rounded-full transition-all flex items-center justify-center ${
+              activeTab === "projects"
+                ? "bg-amber-400 shadow-glow"
+                : "bg-white/20 hover:bg-white/30"
+            }`}
+            aria-label="Projects"
+          >
+            <span
+              className={`text-xs font-bold ${
+                activeTab === "projects" ? "text-black" : "text-white"
               }`}
-              aria-label={`Go to ${year.title}`}
             >
-              <span
-                className={`text-xs font-bold ${
-                  activeYear === year.id ? "text-black" : "text-white"
-                }`}
-              >
-                {3 - index}
-              </span>
-            </button>
-          ))}
+              P
+            </span>
+          </button>
+          <button
+            onClick={() => setActiveTab("ideas")}
+            className={`w-8 h-8 rounded-full transition-all flex items-center justify-center ${
+              activeTab === "ideas"
+                ? "bg-amber-400 shadow-glow"
+                : "bg-white/20 hover:bg-white/30"
+            }`}
+            aria-label="Ideas"
+          >
+            <span
+              className={`text-xs font-bold ${
+                activeTab === "ideas" ? "text-black" : "text-white"
+              }`}
+            >
+              I
+            </span>
+          </button>
         </div>
       </div>
 
-      {/* Main Content - Adjusted to add left padding for main navigation */}
+      {/* Main Content */}
       <div className="pl-16 md:pl-20 pr-16 md:pr-20">
         {/* Header Section */}
         <motion.header
@@ -667,31 +482,30 @@ const UniversityPage = () => {
           </div>
         </motion.header>
 
-        {/* Academic Timeline - Completely reworked for reliable rendering */}
+        {/* Content Section */}
         {mounted && (
           <section className="py-16 px-8">
             <div className="max-w-6xl mx-auto">
               <div className="mb-10">
                 <h2 className="text-3xl font-bold">
-                  {yearsData.find((y) => y.id === activeYear)?.title}
+                  {contentData[activeTab].title}
                 </h2>
                 <div className="h-0.5 w-40 bg-amber-400 mt-2 mb-4"></div>
               </div>
 
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={activeYear}
+                  key={activeTab}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                   className="space-y-8"
                 >
-                  {yearsData
-                    .find((y) => y.id === activeYear)
-                    ?.achievements.map((achievement, index) => (
+                  {contentData[activeTab].items.map(
+                    (item: ProjectItem, index: number) => (
                       <motion.div
-                        key={`${activeYear}-${achievement.id}`}
+                        key={`${activeTab}-${item.id}`}
                         className="border border-white/10 rounded-lg bg-white/5 backdrop-blur-sm overflow-hidden shadow-soft hover:shadow-glow transition-all duration-500"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -707,26 +521,26 @@ const UniversityPage = () => {
                         <div className="p-6">
                           <div className="flex items-start">
                             <div className="flex-shrink-0 mr-5 p-3 bg-white/10 rounded-lg text-amber-400">
-                              {getIcon(achievement.icon)}
+                              {getIcon(item.icon)}
                             </div>
                             <div className="flex-1">
                               <div className="flex justify-between items-start mb-3">
                                 <h3 className="text-xl font-bold">
-                                  {achievement.title}
+                                  {item.title}
                                 </h3>
                                 <span className="px-3 py-1 text-sm bg-gray-800 rounded-full">
-                                  {achievement.date}
+                                  {item.date}
                                 </span>
                               </div>
                               <p className="text-gray-400 mb-4">
-                                {achievement.description}
+                                {item.description}
                               </p>
 
-                              {achievement.image && (
+                              {item.image && (
                                 <div className="relative h-40 mb-4 rounded-lg overflow-hidden">
                                   <Image
-                                    src={achievement.image}
-                                    alt={achievement.title}
+                                    src={item.image}
+                                    alt={item.title}
                                     fill
                                     className="object-cover hover:scale-105 transition-transform duration-500"
                                   />
@@ -734,7 +548,7 @@ const UniversityPage = () => {
                               )}
 
                               <div className="flex flex-wrap gap-2 mb-3">
-                                {achievement.tags.map((tag, idx) => (
+                                {item.tags.map((tag: string, idx: number) => (
                                   <span
                                     key={idx}
                                     className="px-2 py-1 text-xs bg-gray-800 rounded-md hover:bg-gray-700 transition-colors"
@@ -744,9 +558,9 @@ const UniversityPage = () => {
                                 ))}
                               </div>
 
-                              {achievement.link && (
+                              {item.link && (
                                 <Link
-                                  href={achievement.link}
+                                  href={item.link}
                                   target="_blank"
                                   className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors text-sm mt-2 group"
                                 >
@@ -768,134 +582,15 @@ const UniversityPage = () => {
                           </div>
                         </div>
                       </motion.div>
-                    ))}
+                    )
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
           </section>
         )}
 
-        {/* Skills Section */}
-        <motion.section
-          className="py-16 px-8 bg-white/5"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <motion.h2
-              className="text-3xl font-bold mb-12 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-            >
-              Skills Developed
-            </motion.h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {/* Technical Skills */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-              >
-                <h3 className="text-xl font-bold mb-6">Technical Skills</h3>
-                <div className="space-y-4">
-                  {skillsData.technical.map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between mb-1">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-sm text-gray-400">
-                          {skill.proficiency}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-800 rounded-full h-2">
-                        <motion.div
-                          className="bg-amber-400 h-2 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.proficiency}%` }}
-                          transition={{
-                            delay: 1.0 + index * 0.1,
-                            duration: 1.5,
-                            ease: "easeOut",
-                          }}
-                        ></motion.div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Research Skills */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.6 }}
-              >
-                <h3 className="text-xl font-bold mb-6">Research Skills</h3>
-                <div className="space-y-4">
-                  {skillsData.research.map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between mb-1">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-sm text-gray-400">
-                          {skill.proficiency}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-800 rounded-full h-2">
-                        <motion.div
-                          className="bg-amber-400 h-2 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.proficiency}%` }}
-                          transition={{
-                            delay: 1.4 + index * 0.1,
-                            duration: 1.5,
-                            ease: "easeOut",
-                          }}
-                        ></motion.div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Soft Skills */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.0, duration: 0.6 }}
-              >
-                <h3 className="text-xl font-bold mb-6">Soft Skills</h3>
-                <div className="space-y-4">
-                  {skillsData.soft.map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between mb-1">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-sm text-gray-400">
-                          {skill.proficiency}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-800 rounded-full h-2">
-                        <motion.div
-                          className="bg-amber-400 h-2 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.proficiency}%` }}
-                          transition={{
-                            delay: 1.8 + index * 0.1,
-                            duration: 1.5,
-                            ease: "easeOut",
-                          }}
-                        ></motion.div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Footer - Updated to match requirements */}
+        {/* Footer */}
         <motion.footer
           className="py-8 px-8 border-t border-white/10"
           initial={{ opacity: 0 }}
@@ -930,4 +625,4 @@ const UniversityPage = () => {
   );
 };
 
-export default UniversityPage;
+export default ProjectsPage;
