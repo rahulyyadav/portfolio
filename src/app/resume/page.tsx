@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaXTwitter, FaLinkedin, FaArrowDown } from "react-icons/fa6";
 import Image from "next/image";
 
 const sfPro = Inter({ subsets: ["latin"] }); // Using Inter as SF Pro isn't available in Google Fonts
@@ -52,8 +52,20 @@ const sectionClass =
 export default function Resume() {
   return (
     <main
-      className={`${sfPro.className} text-white p-8 max-w-4xl mx-auto space-y-8`}
+      className={`${sfPro.className} text-white p-8 max-w-4xl mx-auto space-y-8 relative`}
     >
+      {/* Floating Download Button */}
+      <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 animate-bounce">
+        <a
+          href="/ResumE.pdf"
+          download="Rahul_Yadav_Resume.pdf"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        >
+          <FaArrowDown />
+          <span>Resume</span>
+        </a>
+      </div>
+
       {/* Header */}
       <div className="text-center bg-gray-800/20 p-8 rounded-2xl transition-all duration-300 ease-in-out transform hover:bg-gray-800/30 hover:scale-[1.02] hover:shadow-xl">
         <h1 className="text-3xl font-bold mb-2">Rahul Yadav</h1>
@@ -89,11 +101,11 @@ export default function Resume() {
         <div className="leading-relaxed">
           Software Engineer skilled in DSA and AWS, with experience debugging
           and enhancing full-stack/mobile applications. Built scalable projects,
-          including a real-time chat app (
+          including a collaborative academic platform (
           <ProjectLink
-            name="Post"
-            image="/Post.png"
-            link="https://github.com/rahulyyadav/Post"
+            name="uni-papers.com"
+            image="/Uni-Papers.jpeg"
+            link="https://uni-papers.com"
           />
           ), a URL shortener (
           <ProjectLink
@@ -118,29 +130,38 @@ export default function Resume() {
         <div className="space-y-6">
           <div className="space-y-3">
             <h3 className="text-lg font-semibold">
-              Post – Real-Time Chat App -{" "}
+              Founder & Developer –{" "}
               <ProjectLink
-                name="Post"
-                image="/Post.png"
-                link="https://github.com/rahulyyadav/Post"
+                name="uni-papers.com"
+                image="/Uni-Papers.jpeg"
+                link="https://uni-papers.com"
               />
             </h3>
+            <p className="text-sm text-gray-400">
+              Launched Version 1.0 | Next.js, AWS, Open Source
+            </p>
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                Developed a real-time chat application using Next.js with AWS as
-                the backend.
+                Built and launched uni-papers.com, a collaborative academic
+                platform for sharing university papers, notes, and solutions.
               </li>
               <li>
-                Integrated WebSockets & AWS Lambda for instant message delivery.
+                Implemented a revenue-sharing model where contributors earn from
+                Google Ads, and university onboarding earns lifetime
+                commissions.
               </li>
               <li>
-                Utilized JWT authentication & AWS SSM for secure auto-login &
-                credential management.
+                Integrated AI-powered question support directly into resource
+                pages, eliminating the need for external search.
               </li>
               <li>
-                Working on SHA-256 encryption to enhance message security,
-                ensuring end-to-end encryption even if AWS storage is
-                compromised.
+                Designed the platform to be open-source, inviting students and
+                developers to contribute to its growth and accessibility.
+              </li>
+              <li>
+                Currently rolling out Version 1.0 features, with planned
+                enhancements including advanced analytics, contributor
+                dashboards, and full encryption for resource security.
               </li>
             </ul>
           </div>
@@ -235,7 +256,7 @@ export default function Resume() {
             B.Tech Computer Science and Engineering ( 2022 - 2026 )
           </h3>
           <p>Vellore Institute of Technology, Vellore</p>
-          <p>CGPA - 7.43 / 10 ( Currently in 3rd Year )</p>
+          <p>CGPA - 7.96 / 10</p>
         </div>
       </section>
 
