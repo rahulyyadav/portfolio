@@ -13,8 +13,12 @@ export async function onRequest(context: Context) {
   const url = new URL(context.request.url);
   const pathname = url.pathname;
 
+  // Debug logging
+  console.log("Request pathname:", pathname);
+
   // If it's the root path, serve index.html
   if (pathname === "/" || pathname === "") {
+    console.log("Serving index.html for root path");
     try {
       const response = await context.env.ASSETS.fetch(
         new Request(url.origin + "/index.html")
@@ -33,6 +37,6 @@ export async function onRequest(context: Context) {
   }
 
   // For all other paths, forward to the Next.js application
-  // This includes /other and all Next.js routes
+  console.log("Forwarding to Next.js app for path:", pathname);
   return context.env.ASSETS.fetch(context.request);
 }

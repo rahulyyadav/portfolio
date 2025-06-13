@@ -12,6 +12,10 @@
       "function": "[[route]]"
     },
     {
+      "pattern": "/other/",
+      "function": "[[route]]"
+    },
+    {
       "pattern": "/_next/*",
       "function": "[[route]]"
     },
