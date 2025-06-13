@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  distDir: ".next",
   images: {
-    domains: ["rahul-yadav.com.np", "github.com"],
     unoptimized: true,
+    domains: ["raba.pages.dev", "github.com"],
   },
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
