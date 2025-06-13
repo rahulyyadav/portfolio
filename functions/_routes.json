@@ -1,5 +1,15 @@
 {
   "version": 1,
   "include": ["/*"],
-  "exclude": []
+  "exclude": [],
+  "routes": [
+    {
+      "pattern": "/",
+      "function": "[[route]]"
+    },
+    {
+      "pattern": "/*",
+      "function": "[[route]]"
+    }
+  ]
 }
