@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages --output-dir .next/static"
+    "pages:build": "npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
