@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const navItems = [
-  { name: "Info", path: "/", icon: UserCircleIcon },
+  { name: "Info", path: "/other", icon: UserCircleIcon },
   { name: "Resume", path: "/resume", icon: DocumentTextIcon },
   { name: "University", path: "/university", icon: AcademicCapIcon },
   { name: "Projects", path: "/Projects", icon: LightBulbIcon },

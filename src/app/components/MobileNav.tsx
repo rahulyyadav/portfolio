@@ -39,13 +39,13 @@ export default function MobileNav() {
         <div className="h-full p-8 flex flex-col">
           {/* Sidebar Buttons */}
           <div className="flex flex-col space-y-6">
-            <Link
-              href="/info"
+            <a
+              href="/other"
               className="text-white text-xl hover:text-gray-300 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Info
-            </Link>
+            </a>
             <Link
               href="/resume"
               className="text-white text-xl hover:text-gray-300 transition-colors"
