@@ -8,22 +8,6 @@
       "function": "[[route]]"
     },
     {
-      "pattern": "/other",
-      "function": "[[route]]"
-    },
-    {
-      "pattern": "/other/",
-      "function": "[[route]]"
-    },
-    {
-      "pattern": "/_next/*",
-      "function": "[[route]]"
-    },
-    {
-      "pattern": "/static/*",
-      "function": "[[route]]"
-    },
-    {
       "pattern": "/*",
       "function": "[[route]]"
     }
