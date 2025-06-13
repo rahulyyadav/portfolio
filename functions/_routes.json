@@ -1,11 +1,5 @@
 {
   "version": 1,
-  "include": ["/*"],
-  "exclude": [],
-  "routes": [
-    {
-      "pattern": "rahul-yadav.com.np/*",
-      "function": "[[route]]"
-    }
-  ]
+  "include": ["/"],
+  "exclude": []
 }
