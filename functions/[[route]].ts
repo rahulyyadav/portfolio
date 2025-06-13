@@ -6,18 +6,31 @@ interface Env {
 
 interface Context {
   request: Request;
-  env: Env;
+  params: { route?: string[] };
 }
 
-export async function onRequest(context: Context) {
+export async function onRequest(context: Context, env: Env): Promise<Response> {
   const url = new URL(context.request.url);
   const pathname = url.pathname;
 
-  // Only handle root path
+  // Serve index.html for root path or empty path
   if (pathname === "/" || pathname === "") {
-    return context.env.ASSETS.fetch(new Request(url.origin + "/index.html"));
+    try {
+      const response = await env.ASSETS.fetch(
+        new Request(`${url.origin}/index.html`)
+      );
+      return new Response(response.body, {
+        headers: {
+          "content-type": "text/html",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+        },
+      });
+    } catch (error) {
+      console.error("Error serving index.html:", error);
+      return new Response("Error serving index.html", { status: 500 });
+    }
   }
 
-  // For everything else, just pass through
-  return context.env.ASSETS.fetch(context.request);
+  // Forward all other requests to the Next.js app
+  return env.ASSETS.fetch(context.request);
 }
