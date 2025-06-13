@@ -14,15 +14,21 @@ export async function onRequest(context: Context) {
 
   // If it's the root path, serve index.html
   if (url.pathname === "/" || url.pathname === "") {
-    const response = await context.env.ASSETS.fetch(
-      new Request(url.origin + "/index.html")
-    );
-    return new Response(response.body, {
-      headers: {
-        "content-type": "text/html",
-        ...response.headers,
-      },
-    });
+    try {
+      const response = await context.env.ASSETS.fetch(
+        new Request(url.origin + "/index.html")
+      );
+      if (response.status === 200) {
+        return new Response(response.body, {
+          headers: {
+            "content-type": "text/html",
+            ...response.headers,
+          },
+        });
+      }
+    } catch (e) {
+      console.error("Error serving index.html:", e);
+    }
   }
 
   // For all other paths, forward to the Next.js application
