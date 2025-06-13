@@ -16,6 +16,10 @@
       "function": "[[route]]"
     },
     {
+      "pattern": "/static/*",
+      "function": "[[route]]"
+    },
+    {
       "pattern": "/*",
       "function": "[[route]]"
     }

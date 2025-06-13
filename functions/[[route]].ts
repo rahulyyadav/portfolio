@@ -11,9 +11,10 @@ interface Context {
 
 export async function onRequest(context: Context) {
   const url = new URL(context.request.url);
+  const pathname = url.pathname;
 
   // If it's the root path, serve index.html
-  if (url.pathname === "/" || url.pathname === "") {
+  if (pathname === "/" || pathname === "") {
     try {
       const response = await context.env.ASSETS.fetch(
         new Request(url.origin + "/index.html")
@@ -32,9 +33,9 @@ export async function onRequest(context: Context) {
   }
 
   // For /other path, serve the Next.js app
-  if (url.pathname === "/other") {
+  if (pathname === "/other") {
     return context.env.ASSETS.fetch(
-      new Request(url.origin + "/_next/static/chunks/pages/other.js")
+      new Request(url.origin + "/_next/static/chunks/pages/index.js")
     );
   }
 
