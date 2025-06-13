@@ -32,13 +32,7 @@ export async function onRequest(context: Context) {
     }
   }
 
-  // For /other path, serve the Next.js app
-  if (pathname === "/other") {
-    return context.env.ASSETS.fetch(
-      new Request(url.origin + "/_next/static/chunks/pages/index.js")
-    );
-  }
-
   // For all other paths, forward to the Next.js application
+  // This includes /other and all Next.js routes
   return context.env.ASSETS.fetch(context.request);
 }
