@@ -4,9 +4,6 @@ const nextConfig = {
     domains: ["raba.pages.dev", "github.com"],
     unoptimized: true,
   },
-  output: "export",
-  distDir: ".next",
-  trailingSlash: true,
 };
 
 module.exports = nextConfig;

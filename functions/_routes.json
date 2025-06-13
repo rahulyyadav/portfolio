@@ -6,10 +6,6 @@
     {
       "pattern": "/",
       "function": "[[route]]"
-    },
-    {
-      "pattern": "/*",
-      "function": "[[route]]"
     }
   ]
 }

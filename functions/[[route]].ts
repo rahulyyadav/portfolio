@@ -13,18 +13,11 @@ export async function onRequest(context: Context) {
   const url = new URL(context.request.url);
   const pathname = url.pathname;
 
-  // If it's the root path, serve index.html
+  // Only handle root path
   if (pathname === "/" || pathname === "") {
     return context.env.ASSETS.fetch(new Request(url.origin + "/index.html"));
   }
 
-  // If it's /other, serve the main Next.js page
-  if (pathname === "/other" || pathname === "/other/") {
-    return context.env.ASSETS.fetch(
-      new Request(url.origin + "/_next/static/chunks/pages/index.js")
-    );
-  }
-
-  // For all other paths, forward to the Next.js application
+  // For everything else, just pass through
   return context.env.ASSETS.fetch(context.request);
 }
