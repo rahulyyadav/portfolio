@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "next build && npx @cloudflare/next-on-pages",
+    "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
@@ -18,7 +18,6 @@
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.0.0",
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^18",
