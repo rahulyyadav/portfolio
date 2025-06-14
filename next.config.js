@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  distDir: ".next",
+  distDir: "out",
   images: {
     unoptimized: true,
-    domains: ["raba.pages.dev", "github.com"],
+    domains: ["rahul-yadav.com.np", "github.com"],
   },
   trailingSlash: true,
 };
