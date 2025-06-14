@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "pages:build": "next build && cp -r out .vercel/output/static",
+    "pages:build": "next build && mkdir -p .vercel/output/static && cp -r out/* .vercel/output/static/",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
